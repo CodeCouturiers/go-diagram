@@ -1,0 +1,179 @@
+// Цветовая гамма для 2K монитора
+colorStructBackground = #2A2A2C // Темный фон для структуры
+colorStructHeader = #3A3A3C // Темный фон для заголовка
+colorHeaderTitle = #F0F0F0 // Светлый текст для заголовка
+colorFieldBackground = #3F3F41 // Темный фон для полей
+colorFieldBackgroundHover = #4A4A4C // Чуть светлее при наведении
+colorMethodBackground = #35353A // Темный фон для методов
+colorMethodBackgroundHover = #45454A // Чуть светлее при наведении
+colorText = #F0F0F0 // Светлый текст
+colorDelete = #FF3B30 // Красный для удаления
+colorTypeInt = #4CD964 // Зеленый для int
+colorTypeBool = #FF9500 // Оранжевый для bool
+colorTypeString = #5AC8FA // Голубой для string
+colorTypeOther = #FF2D55 // Розовый для других типов
+highlightColor = rgba(255, 255, 0, 0.2) // Полупрозрачный желтый для подсветки
+highlightBorderColor = rgba(255, 255, 0, 0.5) // Более насыщенный желтый для границы подсветки
+
+// Цвета иконок
+colorIconClass = #007AFF // Синий для классов
+colorIconField = #FF9500 // Оранжевый для полей
+colorIconMethod = #5856D6 // Фиолетовый для методов
+
+// Размеры и радиусы
+structBorderRadius = 8px
+headerPadding = 12px
+iconSize = 18px
+iconMargin = 6px
+
+.Struct
+  display inline-block
+  border-radius structBorderRadius
+  overflow hidden
+  background-color colorStructBackground
+  box-shadow 0 4px 20px rgba(0, 0, 0, 0.4)
+  transition box-shadow 0.3s ease
+
+  &:hover
+    box-shadow 0 6px 25px rgba(0, 0, 0, 0.5)
+
+  input
+    background-color transparent
+    border none
+    color colorText
+    font-size 14px
+    padding 4px 8px
+    border-radius 4px
+    transition background-color 0.2s ease
+
+    &:focus
+      outline none
+      background-color rgba(255, 255, 255, 0.1)
+
+  .header
+    background-color colorStructHeader
+    padding headerPadding
+    display flex
+    align-items center
+
+    .name
+      color colorHeaderTitle
+      font-weight 600
+      font-size 16px
+      margin-left 28px
+
+  .icon
+    width iconSize
+    height iconSize
+    border-radius 50%
+    font-size 11px
+    font-weight 700
+    text-align center
+    line-height iconSize
+    position absolute
+    margin-top iconMargin
+    transition all 0.2s ease
+    box-shadow 0 2px 5px rgba(0, 0, 0, 0.2)
+
+    &:hover
+      transform scale(1.1)
+      box-shadow 0 3px 7px rgba(0, 0, 0, 0.3)
+
+  .delete.icon
+    background-color colorDelete
+    color colorText
+    right headerPadding
+    top headerPadding
+
+  .class.icon
+    background-color colorIconClass
+    color colorText
+
+  .field.icon
+    background-color colorIconField
+    color colorStructBackground
+
+  .method.icon
+    background-color colorIconMethod
+    color colorText
+
+  .fields, .methods
+    margin 0
+    padding 0
+
+    & > .field, & > .method
+      list-style-type none
+      padding 10px headerPadding
+      display flex
+      justify-content space-between
+      align-items center
+      transition background-color 0.2s ease
+
+      .name
+        margin-left 28px
+        font-size 14px
+
+      .type, .return-type
+        font-size 13px
+        font-weight 500
+        padding 2px 6px
+        border-radius 4px
+
+        &.int
+          background-color rgba(colorTypeInt, 0.2)
+          color colorTypeInt
+
+        &.bool
+          background-color rgba(colorTypeBool, 0.2)
+          color colorTypeBool
+
+        &.string
+          background-color rgba(colorTypeString, 0.2)
+          color colorTypeString
+
+        &.other
+          background-color rgba(colorTypeOther, 0.2)
+          color colorTypeOther
+
+  .fields > .field
+    background-color colorFieldBackground
+    &:hover
+      background-color colorFieldBackgroundHover
+
+  .methods > .method
+    background-color colorMethodBackground
+    &:hover
+      background-color colorMethodBackgroundHover
+
+  &.highlighted
+    box-shadow 0 0 20px highlightBorderColor
+
+  .header .name.highlighted,
+  .field.highlighted,
+  .method.highlighted,
+  input.highlighted
+    background-color highlightColor
+
+// Стили для улучшения видимости стрелок
+.UMLDiagram
+  .diagram
+    position relative
+
+  svg
+    position absolute
+    top 0
+    left 0
+    pointer-events none
+
+    path
+      stroke colorText
+      stroke-width 2
+      fill none
+
+    text
+      font-size 12px
+      fill colorText
+      pointer-events auto
+
+    marker
+      fill colorText

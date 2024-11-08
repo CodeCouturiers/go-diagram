@@ -1,0 +1,30 @@
+// Цветовая гамма для 2K монитора
+colorSearchBoxText = #F0F0F0 // Светлый текст
+colorSearchBox = #3A3A3C // Темный фон поиска
+colorSearchBoxBorder = #4C4C4E // Цвет границы
+colorSearchBoxFocus = #5AC8FA // Цвет при фокусе
+
+// Размеры и отступы
+searchBoxPadding = 12px
+searchBoxBorderRadius = 6px
+
+.SearchBox
+  margin-bottom 15px
+
+  .input
+    width 100%
+    padding searchBoxPadding
+    background-color rgba(colorSearchBox, 0.5)
+    border 1px solid colorSearchBoxBorder
+    border-radius searchBoxBorderRadius
+    color colorSearchBoxText
+    font-size 14px
+    transition all 0.3s ease
+
+    &::placeholder
+      color rgba(colorSearchBoxText, 0.5)
+
+    &:focus
+      outline none
+      border-color colorSearchBoxFocus
+      box-shadow 0 0 0 2px rgba(colorSearchBoxFocus, 0.3)

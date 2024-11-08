@@ -1,0 +1,22 @@
+// Цветовая гамма для 2K монитора
+buttonColor = rgba(240, 240, 240, 0.2) // Светлый фон кнопки
+buttonHoverBg = rgba(240, 240, 240, 0.3) // Светлее при наведении
+buttonActiveBg = rgba(240, 240, 240, 0.4) // Светлее при нажатии
+buttonTextColor = #F0F0F0 // Светлый текст
+
+// Размеры и радиусы
+buttonBorderRadius = 12px
+buttonPadding = 12px 24px
+
+.Button
+  color buttonTextColor
+  background-color buttonColor
+  border none
+  border-radius buttonBorderRadius
+  padding buttonPadding
+  transition background-color 0.3s ease
+  cursor pointer
+  &:hover
+    background-color buttonHoverBg
+  &:active
+    background-color buttonActiveBg

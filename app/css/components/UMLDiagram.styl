@@ -1,0 +1,71 @@
+// Цветовая гамма для 2K монитора
+colorUMLBackground = #1C1C1E // Темно-серый фон
+colorUMLPackage = #00B2B2 // Голубовато-зеленый для пакетов
+colorUMLFile = #8C52FF // Фиолетовый для файлов
+colorUMLSelectedShadow = #FFD700 // Золотистый для выделенных элементов
+
+// Размеры и радиусы
+umlBorderRadius = 12px
+umlPadding = 24px
+fileMinWidth = 200px
+addStructButtonSize = 36px
+.UMLDiagram
+  overflow hidden
+  background-color colorUMLBackground
+  &.dragging
+    cursor move
+  .packages, .edges
+    position absolute
+  .packages
+    .package, .file, .Struct
+      margin umlPadding
+      display inline-block
+      box-shadow 0px 0px 10px rgba(0, 0, 0, .5) // Darker box shadow
+    .package, .file
+      position relative
+      padding-top 40px
+      & > .title
+        position absolute
+        width 100%
+        margin 0
+        text-align center
+        top 15px
+        color rgb(200, 200, 200) // Lighter text color
+        opacity 0.6
+        font-style italic
+        overflow hidden
+        text-overflow ellipsis
+        line-height 1.5
+        padding 0 umlBorderRadius
+    .package
+      background-color rgba(colorUMLPackage, 0.4) // Darker package background
+      border-radius umlBorderRadius * 2
+      &.selected
+        background-color rgba(colorUMLPackage, 0.7) // Darker selected package background
+    .file
+      background-color rgba(colorUMLFile, 0.4) // Darker file background
+      border-radius umlBorderRadius
+      min-width fileMinWidth
+      &.selected
+        background-color rgba(colorUMLFile, 0.7) // Darker selected file background
+      .addStruct
+        position absolute
+        top umlBorderRadius
+        right umlBorderRadius
+        width: addStructButtonSize
+        height: addStructButtonSize
+    .selected
+      box-shadow 0 0 10px rgba(colorUMLSelectedShadow, 0.5) // Darker selected shadow
+  .edges
+    pointer-events none
+    .edge
+      color rgb(0, 200, 0) // Darker edge color
+
+.UMLDiagram
+  transition: opacity 0.3s ease-in-out
+
+  &.transitioning
+    opacity: 0.5
+
+.diagram
+  transition: all 0.3s ease-in-out

@@ -1,0 +1,120 @@
+@charset "UTF-8"
+
+@import 'vendor/**/*'
+@import 'base/**/*'
+@import 'components/**/*'
+
+.global-functions-container {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 450px;
+  background-color: #212529; /* Очень тёмный фон */
+  border: 1px solid #343a40; /* Тёмный бордер */
+  border-radius: 8px;
+  padding: 15px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.global-functions-container h2 {
+  margin-top: 0;
+  color: #ffffff; /* Белый текст */
+  border-bottom: 2px solid #495057; /* Более светлый бордер */
+  padding-bottom: 10px;
+}
+
+.package-functions {
+  margin-bottom: 20px;
+}
+
+.package-functions h3 {
+  color: #ffffff; /* Белый текст */
+  background-color: #343a40; /* Тёмный фон */
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.package-functions h3:hover {
+  background-color: #495057; /* Более светлый при наведении */
+}
+
+.toggle-icon {
+  font-size: 12px;
+  color: #ffffff; /* Белый текст */
+}
+
+.GlobalFunction {
+  background-color: #343a40; /* Тёмный фон для функций */
+  border: 1px solid #495057; /* Лёгкий бордер */
+  border-radius: 4px;
+  margin: 10px 0;
+  padding: 10px;
+  transition: all 0.3s ease;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.GlobalFunction:hover {
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.GlobalFunction h4 {
+  margin: 0 0 10px 0;
+  color: #17a2b8; /* Ярко-голубой */
+}
+
+.GlobalFunction p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #e9ecef; /* Светло-серый */
+}
+
+.GlobalFunction .file-name {
+  color: #adb5bd; /* Светло-серый */
+  font-style: italic;
+}
+
+.GlobalFunction .parameters,
+.GlobalFunction .return-type {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.GlobalFunction .parameter,
+.GlobalFunction .type {
+  background-color: #495057; /* Тёмно-серый */
+  border-radius: 3px;
+  padding: 2px 5px;
+  font-size: 12px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #ffffff; /* Белый текст */
+}
+
+.GlobalFunction .type {
+  color: #28a745; /* Ярко-зелёный для типа */
+}
+
+.GlobalFunction .no-params,
+.GlobalFunction .no-return {
+  color: #adb5bd; /* Светло-серый */
+  font-style: italic;
+}
+
+.highlighted {
+  background-color: #3b3b3b; /* Темно-серый фон */
+  border-color: #444; /* Чуть светлее для бордера */
+  color: #e0e0e0; /* Светло-серый текст */
+  border-radius: 4px;
+  padding: 4px;
+}

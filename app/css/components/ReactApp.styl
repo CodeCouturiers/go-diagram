@@ -1,0 +1,299 @@
+// Variables
+homeComponentMargin = 20px
+umlBorderRadius = 10px
+umlPadding = 20px
+structIconSize = 14px
+structBorderRadius = 3px
+headerPadding = 5px
+iconMargin = 5px
+miniMapSize = 200px
+fileMinWidth = 160px
+addStructButtonSize = 30px
+
+// Colors
+colorHomeBackground = #333
+colorCurrentDirectoryBackground = #000
+colorUMLSelectedShadow = rgb(241, 196, 15)
+colorUMLPackage = rgb(20, 200, 30)
+colorUMLFile = rgb(20, 30, 200)
+colorStructHeader = rgb(153, 153, 153)
+colorHeaderTitle = rgb(40, 40, 40)
+colorClassIcon = rgb(230, 126, 34)
+colorClassIconHover = rgb(46, 204, 113)
+colorFieldIcon = rgb(241, 196, 15)
+colorFieldIconHover = rgb(231, 76, 60)
+colorTypeInt = rgb(46, 204, 113)
+colorTypeBool = rgb(231, 76, 60)
+colorTypeString = rgb(52, 152, 219)
+colorTypeOther = rgb(230, 126, 34)
+colorDelete = colorFieldIconHover
+colorMiniMap = rgb(50, 50, 50)
+colorMiniMapBorder = gray
+colorSearchBoxText = #fff
+colorSearchBox = rgb(200, 200, 200)
+buttonColor = rgba(white, 0.3)
+
+// Mixins
+fullSize()
+  width 100%
+  height 100%
+
+// Main App Styles
+#ReactApp, .App
+  fullSize()
+
+.HomePage
+  fullSize()
+  background-color colorHomeBackground
+  display grid
+  grid-template-columns 1fr 200px
+  grid-template-rows auto 1fr auto
+  gap homeComponentMargin
+  padding homeComponentMargin
+
+  .current-directory
+    grid-column 1 / 2
+    grid-row 1 / 2
+    .input
+      background-color rgba(colorCurrentDirectoryBackground, 0.1)
+
+  .search
+    grid-column 2 / 3
+    grid-row 1 / 2
+    width 100%
+
+  .UMLDiagram
+    grid-column 1 / 3
+    grid-row 2 / 3
+    overflow hidden
+
+  .bottom-right
+    grid-column 2 / 3
+    grid-row 3 / 4
+    justify-self end
+    align-self end
+
+// UML Diagram Styles
+.UMLDiagram
+  &.dragging
+    cursor move
+  .packages, .edges
+    position absolute
+  .packages
+    .package, .file, .Struct
+      margin umlPadding
+      display inline-block
+      box-shadow 0px 0px 10px rgba(0, 0, 0, .3)
+    .package, .file
+      position relative
+      padding-top 40px
+      & > .title
+        position absolute
+        width 100%
+        margin 0
+        text-align center
+        top 15px
+        color white
+        opacity 0.4
+        font-style italic
+        overflow hidden
+        text-overflow ellipsis
+        line-height 1.5
+        padding 0 umlBorderRadius
+    .package
+      background-color rgba(colorUMLPackage, 0.2)
+      border-radius umlBorderRadius * 2
+      &.selected
+        background-color rgba(colorUMLPackage, 0.5)
+    .file
+      background-color rgba(colorUMLFile, 0.2)
+      border-radius umlBorderRadius
+      min-width fileMinWidth
+      &.selected
+        background-color rgba(colorUMLFile, 0.5)
+      .addStruct
+        position absolute
+        top umlBorderRadius
+        right umlBorderRadius
+        width addStructButtonSize
+        height addStructButtonSize
+    .selected
+      box-shadow 0 0 10px rgba(colorUMLSelectedShadow, 0.2)
+  .edges
+    pointer-events none
+    .edge
+      color blue
+
+// Struct Styles
+.Struct
+  display inline-block
+  border-radius structBorderRadius
+  overflow hidden
+  input
+    background-color transparent
+    border none
+    text-overflow ellipsis
+  .header
+    position relative
+    background-color colorStructHeader
+    padding headerPadding
+    .name
+      padding-left 20px
+      padding-right 5px
+      color colorHeaderTitle
+      font-weight 700
+      white-space nowrap
+    .icon
+      overflow hidden
+      cursor pointer
+      .p
+        display none
+      &:hover
+        .c
+          display none
+        .p
+          display block
+  .icon
+    width structIconSize
+    height structIconSize
+    border-radius 10px
+    display inline-block
+    font-size 9px
+    font-weight 700
+    text-align center
+    position absolute
+    margin-top iconMargin
+    line-height 1.5
+  .delete
+    &.icon
+      background-color colorDelete
+      color rgb(236, 240, 241)
+      position absolute
+      right 0
+      top 0
+      margin (headerPadding + iconMargin) headerPadding headerPadding headerPadding
+  .class
+    &.icon
+      background-color colorClassIcon
+      color rgb(236, 240, 241)
+      &:hover
+        background-color colorClassIconHover
+  .method
+    &.icon
+      background-color rgb(52, 152, 219)
+      color rgb(236, 240, 241)
+      overflow hidden
+      cursor pointer
+      .m
+        display block
+      .m, .x
+        height 100%
+      &:hover
+        background-color colorDelete
+        .m
+          display none
+        .x
+          display block
+    .left
+      float left
+      color rgb(236, 240, 241)
+      padding-right 20px
+    .right
+      float right
+      input
+        text-align right
+    .name
+      padding-left 20px
+    .return-type
+      color colorTypeOther
+      margin-left 5px
+      &:not(:last-child)::after
+        content ", "
+        color rgb(236, 240, 241)
+  .methods
+    margin 0
+    padding 0
+    & > .method
+      list-style-type none
+      min-height 30px
+      clear both
+      overflow hidden
+      background-color rgb(80, 80, 80)
+      &:hover
+        background-color rgb(110, 110, 110)
+  .field
+    &.icon
+      background-color colorFieldIcon
+      color rgb(40, 40, 40)
+      overflow hidden
+      cursor pointer
+      .f
+        display block
+      .f, .x
+        height 100%
+      &:hover
+        background-color colorDelete
+        .f
+          display none
+        .x
+          display block
+    .left
+      float left
+      color rgb(236, 240, 241)
+      padding-right 20px
+    .right
+      float right
+      input
+        text-align right
+    .name
+      padding-left 20px
+    .type
+      &.int
+        color colorTypeInt
+      &.bool
+        color colorTypeBool
+      &.string
+        color colorTypeString
+      &.other
+        color colorTypeOther
+  .fields
+    margin 0
+    padding 0
+    & > .field
+      list-style-type none
+      height 30px
+      clear both
+      overflow hidden
+      background-color rgb(102, 102, 102)
+      &:hover
+        background-color rgb(130, 130, 130)
+
+.Struct .field .left, .Struct .field .right,
+.Struct .method .left, .Struct .method .right
+  display block
+  padding 5px
+
+// MiniMap Styles
+.MiniMap
+  .map
+    width miniMapSize
+    height miniMapSize
+    border 1px solid colorMiniMapBorder
+    background-color rgba(colorMiniMap, 0.2)
+    box-shadow 0px 0px 10px rgba(0, 0, 0, .3)
+
+// SearchBox Styles
+.SearchBox
+  color colorSearchBoxText
+  .input
+    border none
+    width 100%
+    background-color rgba(colorSearchBox, 0.3)
+    padding (homeComponentMargin / 2) homeComponentMargin
+
+// Button Styles
+.Button
+  color #333
+  background-color buttonColor
+  border none
+  border-radius 10px
